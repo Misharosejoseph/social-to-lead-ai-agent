@@ -59,3 +59,41 @@ Rule-based Intent Classification
 JSON-based Knowledge Base
 Modular Agent Architecture
 (Extendable to LangChain / LangGraph)
+How to Run the Project
+1. Clone the repository
+git clone <your-repo-link>
+cd social-to-lead-agent
+2. Install dependencies
+pip install -r requirements.txt
+3. Run the application
+python app.py
+4. Start interacting
+
+Example:
+
+User: Hi
+User: What is your pricing?
+User: I want to try the Pro plan
+🧩 Architecture Explanation
+
+This project uses a modular agent-based architecture where each component handles a specific responsibility.
+
+The intent classifier determines user intent using rule-based logic. Based on the detected intent, the agent module decides the next action — either responding with information or transitioning into a lead capture workflow.
+
+For knowledge retrieval, a simple RAG pipeline is implemented using a local JSON knowledge base. This ensures responses are grounded in predefined product data instead of hardcoded replies.
+
+State management is handled using a dictionary within the agent, which tracks conversation progress across multiple turns (name → email → platform). This enables memory retention and ensures that the lead capture tool is triggered only after all required inputs are collected.
+
+The architecture is designed to be easily extendable to frameworks like LangChain or LangGraph for more advanced agent orchestration and memory handling.
+
+📲 WhatsApp Integration (Approach)
+
+To deploy this agent on WhatsApp, I would use a webhook-based integration:
+
+Use a service like Twilio WhatsApp API
+Configure a webhook endpoint using Flask/FastAPI
+Receive incoming user messages via HTTP POST requests
+Pass messages to the agent logic
+Send responses back through the API
+
+This enables real-time conversational interaction on WhatsApp while leveraging the same backend agent logic.
